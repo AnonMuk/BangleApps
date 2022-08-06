@@ -142,6 +142,7 @@ E.on('notify',msg=>{
   };
   var replacer = ""; //(n)=>print('Unknown unicode '+n.toString(16));
   //if (appNames[msg.appId]) msg.a
+  if(appNames[msg.appId] != null){
   require("messages").pushMessage({
     t : msg.event,
     id : msg.uid,
@@ -151,6 +152,7 @@ E.on('notify',msg=>{
     subject : msg.subtitle&&E.decodeUTF8(msg.subtitle, unicodeRemap, replacer),
     body : msg.message&&E.decodeUTF8(msg.message, unicodeRemap, replacer) || "Cannot display"
   });
+  }
   // TODO: posaction/negaction?
 });
 
