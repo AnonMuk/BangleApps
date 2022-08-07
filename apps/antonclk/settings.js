@@ -66,6 +66,13 @@
         writeSettings();
       }
     },
+    "Month First": {
+      value: (settings.monthFirst !== undefined? settings.monthFirst : true),
+      onchange: v => {
+        settings.monthFirst = v;
+        writeSettings();
+      }
+    }
   };
 
   // Submenu

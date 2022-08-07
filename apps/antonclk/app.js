@@ -22,6 +22,7 @@ var weekDay;
 var calWeek;
 var upperCase;
 var vectorFont;
+var monthFirst;
 
 // dynamic variables
 var drawTimeout;
@@ -65,6 +66,7 @@ function loadSettings() {
   calWeek = def(settings.calWeek, false);
   upperCase = def(settings.upperCase, true);
   vectorFont = def(settings.vectorFont, false);
+  monthFirst = def(settings.monthFirst, true);
 
   // Legacy
   if (dateOnSecs === true)
@@ -150,21 +152,32 @@ function draw() {
       x = g.getWidth() / 4 + (isBangle1 ? 12 : 4) + (secondsWithColon ? 0 : g.stringWidth(":") / 2);
       var dateStr2 = (dateOnMain === "ISO8601" ? isoStr(date) : require("locale").date(date, 1));
       var year;
-      var md;
+      var dateRaw;
+      var m;
+      var d;
+      var dateClean;
       var yearfirst;
       if (dateStr2.match(/\d\d\d\d$/)) { // formatted date ends with year
         year = (dateOnSecs === "Year" ? dateStr2.slice(-4) : require("locale").dow(date, 1));
-        md = dateStr2.slice(0, -4);
-        if (!md.endsWith(".")) // keep separator before the year only if it is a dot (31.12. but 31/12)
-          md = md.slice(0, -1);
+        dateRaw = dateStr2.slice(0, -4);
+        if (!dateRaw.endsWith(".")) // keep separator before the year only if it is a dot (31.12. but 31/12)
+          dateRaw = dateRaw.slice(0, -1);
+        d = dateRaw.slice(0, 2);
+        m = dateRaw.slice(-2);
         yearfirst = false;
       } else { // formatted date begins with year
         if (!dateStr2.match(/^\d\d\d\d/)) // if year position cannot be detected...
           dateStr2 = isoStr(date); // ...use ISO date format instead
         year = (dateOnSecs === "Year" ? dateStr2.slice(0, 4) : require("locale").dow(date, 1));
-        md = dateStr2.slice(5); // never keep separator directly after year
+        dateRaw = dateStr2.slice(5); // never keep separator directly after year
+        d = dateRaw.slice(0, 2);
+        m = dateRaw.slice(-2);
         yearfirst = true;
       }
+      if(monthFirst)
+        dateClean = m + "/" + d;
+      else
+        dateClean = d + "/" + m;
       if (dateOnSecs === "Weekday" && upperCase)
         year = year.toUpperCase();
       g.setFontAlign(0, 0);
@@ -174,7 +187,7 @@ function draw() {
         g.setFont("6x8", 2);
       if (doColor())
         g.setColor(1, 0, 0);
-      g.drawString(md, x, (yearfirst ? y + (vectorFont ? 26 : 16) : y));
+      g.drawString(dateClean, x, (yearfirst ? y + (vectorFont ? 26 : 16) : y));
       g.drawString(year, x, (yearfirst ? y : y + (vectorFont ? 26 : 16)));
     } else {
       g.setFontAlign(0, 0).drawString(secStr, x, y); // Just the seconds centered
