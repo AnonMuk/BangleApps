@@ -44,6 +44,7 @@ If seconds are shown, the weekday is never shown as there is not enough space on
 If "Show Weekday" is "Off" displays the week-number as "week #<num>".
 If "Show Weekday" is "On" displays "weekday name short" with " #<num>" .
 If seconds are shown, the week number is never shown as there is not enough space on the watch face.
+* **Month First** - Display month first instead of day first for increased legibility to US users.
 * **Vector font** - Use the built-in vector font for dates and weekday.
 This can improve readability.
 Otherwise, a scaled version of the built-in 6x8 pixels font is used.
