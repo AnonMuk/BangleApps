@@ -4,108 +4,108 @@ bleServiceOptions.ancs = true;
 if (NRF.amsIsActive) bleServiceOptions.ams = true; // amsIsActive was added at the same time as the "am" option
 Bangle.ancsMessageQueue = [];
 
-// Built-ins
-let facetime;
-let messages;
-let phone;
+// // Built-ins
+// let facetime;
+// let messages;
+// let phone;
 
-// Socials
-let discord;
-let instagram;
-let messenger;
-let signal;
-let snapchat;
-let telegram;
-let whatsapp;
+// // Socials
+// let discord;
+// let instagram;
+// let messenger;
+// let signal;
+// let snapchat;
+// let telegram;
+// let whatsapp;
 
-// Productivity
-let gcal;
-let outlook;
-let shop;
-let teams;
+// // Productivity
+// let gcal;
+// let outlook;
+// let shop;
+// let teams;
 
-// Other
-let other;
+// // Other
+// let other;
 
-function loadSettings(){
-  function def (value, def) {return value !== undefined ? value: def;}
+// function loadSettings(){
+//   function def (value, def) {return value !== undefined ? value: def;}
 
-  var settings = require('Storage').readJSON(SETTINGSFILE, true) || {};
+//   var settings = require('Storage').readJSON(SETTINGSFILE, true) || {};
   
-  facetime = {
-    "enabled": def(settings.facetime, true),
-    "appName": "com.apple.facetime",
-  };
-  messages = {
-    "enabled": def(settings.messages, true),
-    "appName": "com.apple.MobileSMS",
-  };
-  phone = {
-    "enabled": def(settings.phone, true),
-    "appName": "com.apple.mobilephone"
-  };
+//   facetime = {
+//     "enabled": def(settings.facetime, true),
+//     "appName": "com.apple.facetime",
+//   };
+//   messages = {
+//     "enabled": def(settings.messages, true),
+//     "appName": "com.apple.MobileSMS",
+//   };
+//   phone = {
+//     "enabled": def(settings.phone, true),
+//     "appName": "com.apple.mobilephone"
+//   };
 
 
-  discord = {
-    "enabled": def(settings.discord, true),
-    "appName": "com.hammerandchisel.discord",
-  };
+//   discord = {
+//     "enabled": def(settings.discord, true),
+//     "appName": "com.hammerandchisel.discord",
+//   };
 
-  instagram = {
-    "enabled": def(settings.instagram, false),
-    "appName": "com.burbn.instagram",
-  };
-  messenger = {
-    "enabled": def(settings.messenger, true),
-    "appName": "com.facebook.messenger",
-  };
+//   instagram = {
+//     "enabled": def(settings.instagram, false),
+//     "appName": "com.burbn.instagram",
+//   };
+//   messenger = {
+//     "enabled": def(settings.messenger, true),
+//     "appName": "com.facebook.messenger",
+//   };
 
-  signal = {
-    "enabled": def(settings.signal, true),
-    "appName": "org.whispersystems.signal",
-  };
-  snapchat = {
-    "enabled": def(settings.snapchat, true),
-    "appName": "com.toyopagroup.picaboo",
-  };
+//   signal = {
+//     "enabled": def(settings.signal, true),
+//     "appName": "org.whispersystems.signal",
+//   };
+//   snapchat = {
+//     "enabled": def(settings.snapchat, true),
+//     "appName": "com.toyopagroup.picaboo",
+//   };
 
-  telegram = 
-  {
-    "enabled": def(settings.telegram, false),
-    "appName": "ph.telegra.Telegraph",
-  };
+//   telegram = 
+//   {
+//     "enabled": def(settings.telegram, false),
+//     "appName": "ph.telegra.Telegraph",
+//   };
 
-  whatsapp = {
-    "enabled": def(settings.whatsapp, false),
-    "appName": "net.whatsapp.WhatsApp",
-  };
-
-
-  gcal = {
-    "enabled": def(settings.gcal, true),
-    "appName": "com.google.calendar",
-  };
-
-  outlook = {
-    "enabled": def(settings.outlook, true),
-    "appName": "com.microsoft.Office.Outlook",
-  };
-
-  shop = {
-    "enabled": def(settings.shop, true),
-    "appName": "com.shopify.shop",
-  };
-
-  teams = {
-    "enabled": def(settings.teams, true),
-    "appName": "com.microsoft.skype.teams",
-  };
+//   whatsapp = {
+//     "enabled": def(settings.whatsapp, false),
+//     "appName": "net.whatsapp.WhatsApp",
+//   };
 
 
-  other = def(settings.other, false);
-}
+//   gcal = {
+//     "enabled": def(settings.gcal, true),
+//     "appName": "com.google.calendar",
+//   };
 
-loadSettings(); // load/initialize settings because we need those
+//   outlook = {
+//     "enabled": def(settings.outlook, true),
+//     "appName": "com.microsoft.Office.Outlook",
+//   };
+
+//   shop = {
+//     "enabled": def(settings.shop, true),
+//     "appName": "com.shopify.shop",
+//   };
+
+//   teams = {
+//     "enabled": def(settings.teams, true),
+//     "appName": "com.microsoft.skype.teams",
+//   };
+
+
+//   other = def(settings.other, false);
+// }
+
+// loadSettings(); // load/initialize settings because we need those
 
 /* Handle ANCS events coming in, and fire off 'notify' events
 when we actually have all the information we need */
