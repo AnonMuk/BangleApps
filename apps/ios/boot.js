@@ -1,4 +1,4 @@
-const SETTINGSFILE = 'ios.json';
+// const SETTINGSFILE = 'ios.json';
 
 bleServiceOptions.ancs = true;
 if (NRF.amsIsActive) bleServiceOptions.ams = true; // amsIsActive was added at the same time as the "am" option
