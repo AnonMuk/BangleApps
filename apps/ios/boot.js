@@ -256,17 +256,15 @@ E.on('notify',msg=>{
   };
   var replacer = ""; //(n)=>print('Unknown unicode '+n.toString(16));
   //if (appNames[msg.appId]) msg.a
-  if(other){
-    require("messages").pushMessage({
-      t : msg.event,
-      id : msg.uid,
-      src : appNames[msg.appId] || msg.appId,
-      new : msg.new,
-      title : msg.title&&E.decodeUTF8(msg.title, unicodeRemap, replacer),
-      subject : msg.subtitle&&E.decodeUTF8(msg.subtitle, unicodeRemap, replacer),
-      body : msg.message&&E.decodeUTF8(msg.message, unicodeRemap, replacer) || "Cannot display"
-    });
-  }
+  require("messages").pushMessage({
+    t : msg.event,
+    id : msg.uid,
+    src : appNames[msg.appId] || msg.appId,
+    new : msg.new,
+    title : msg.title&&E.decodeUTF8(msg.title, unicodeRemap, replacer),
+    subject : msg.subtitle&&E.decodeUTF8(msg.subtitle, unicodeRemap, replacer),
+    body : msg.message&&E.decodeUTF8(msg.message, unicodeRemap, replacer) || "Cannot display"
+  });
   // TODO: posaction/negaction?
 });
 
