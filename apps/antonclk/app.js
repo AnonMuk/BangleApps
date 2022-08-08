@@ -43,6 +43,7 @@ require('Storage').writeJSON(SETTINGSFILE, {
   calWeek: true,
   upperCase: true,
   vectorFont: true,
+  monthFirst: true,
 });
 */
 
